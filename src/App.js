@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+  
+  // if this causes a "flicker" you can swap it for useLayoutEffect instead of useEffect
+  useEffect(()=> {
+    loginStatus()
+  },[])
+  
+  function loginStatus(){
+    axios.get('http://localhost:3001/logged_in',{withCredentials:true})
+    .then(res =>{
+      if (res.data.logged_in){
+        handleLogin(res)
+      }
+      else{
+        handleLogout()
+      }
+    })
+    .catch(error => console.log('api error:', error))
+  }
+
+  function handleLogin(data){
+    setIsLoggedIn(true)
+    setUser(data.user)
+  }
+  function handleLogout(){
+    setIsLoggedIn(false)
+    setUser({})
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <div className="App">
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={}/>
+        <Route exact path='/login' component={}/>
+        <Route exact path='/signup' component={}/>
+     </Switch>
+    </BrowserRouter>
+
+  </div>
   );
 }
 
