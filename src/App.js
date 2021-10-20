@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Login from "./components/Login";
 
 function App() {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   
@@ -43,7 +45,7 @@ function App() {
         <Route exact path='/signup' component={}/>
      </Switch>
     </BrowserRouter>
-
+    <Login handleLogin = {handleLogin}/>
   </div>
   );
 }

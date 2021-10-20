@@ -11,6 +11,41 @@ function Signup(){
 
     function handleSubmit(e){
         e.preventDefault()
+            const user ={
+                username: username,
+                email: email,
+                password: password,
+                firstName: firstName,
+                lastName: lastName
+            }
+            axios.post('http://localhost:3001/users',{user},{withCredentials:true})
+                .then (res =>{
+                    if(res.data.status === 'created'){
+                        handleLogin(res.data)
+                        redirect()   
+                    }
+                    else{
+                        setErrorMsg(res.data.errors)
+                    }
+                })
+                .catch(error => console.log('api errors:', error))
+        }
+            function redirect(){
+                history.push('/')
+            }
+               // error handling function 
+        // handleErrors = () => {
+        //     return (
+        //       <div>
+        //         <ul>
+        //         {this.state.errors.map(error => {
+        //         return <li key={error}>{error}</li>
+        //           })}
+        //         </ul>
+        //       </div>
+        //     )
+        //   };    
+
     }
     return(
         <div className = "Signup">
