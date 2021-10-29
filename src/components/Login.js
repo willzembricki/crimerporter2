@@ -4,7 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 
 function Login({ handleLogin }) {
   const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
+  //   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errorMsg, setErrorMsg] = useState();
 
@@ -14,7 +14,7 @@ function Login({ handleLogin }) {
     e.preventDefault();
     const user = {
       username: username,
-      email: email,
+      //   email: email,
       password: password,
     };
     axios
@@ -23,9 +23,11 @@ function Login({ handleLogin }) {
         if (res.data.logged_in) {
           handleLogin(res.data);
           redirect();
+          console.log(res.data);
         } else {
           setErrorMsg(res.data.errors);
         }
+        console.log(errorMsg);
       })
       .catch((error) => console.log("api errors:", error));
   }
@@ -48,7 +50,7 @@ function Login({ handleLogin }) {
   return (
     <div className="login">
       <h1>Log In</h1>
-      <form onSubmit={() => handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
           placeholder="Username"
@@ -56,13 +58,13 @@ function Login({ handleLogin }) {
           onChange={(e) => setUsername(e.target.value)}
           required
         />
-        <input
+        {/* <input
           type="text"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-        />
+        /> */}
         <input
           type="text"
           placeholder="Password"
@@ -73,10 +75,10 @@ function Login({ handleLogin }) {
         <button placeholder="submit" type="submit">
           Log In
         </button>
-        <div>
-          or <Link to="/signup">Sign Up</Link>
-        </div>
       </form>
+      <div>
+        or <Link to="/signup">Sign Up</Link>
+      </div>
     </div>
   );
 }

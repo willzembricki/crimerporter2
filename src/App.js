@@ -31,6 +31,7 @@ function App() {
   function handleLogin(data) {
     setIsLoggedIn(true);
     setUser(data.user);
+    console.log(isLoggedIn, user);
   }
   function handleLogout() {
     setIsLoggedIn(false);
