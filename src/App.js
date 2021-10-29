@@ -20,8 +20,10 @@ function App() {
       .get("http://localhost:3001/logged_in", { withCredentials: true })
       .then((res) => {
         if (res.data.logged_in) {
+          console.log(res);
           handleLogin(res);
         } else {
+          console.log(res);
           handleLogout();
         }
       })
@@ -36,13 +38,24 @@ function App() {
   function handleLogout() {
     setIsLoggedIn(false);
     setUser({});
+    console.log(isLoggedIn, user);
   }
 
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <Home
+                handleLogout={handleLogout}
+                user={user}
+                isLoggedIn={isLoggedIn}
+              />
+            )}
+          />
           <Route
             exact
             path="/login"

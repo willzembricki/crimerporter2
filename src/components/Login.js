@@ -3,9 +3,9 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 
 function Login({ handleLogin }) {
-  const [username, setUsername] = useState();
-  //   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [username, setUsername] = useState("");
+  //   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState();
 
   // Trying to establish history based on different blog. set equal to imported useHistory
@@ -26,6 +26,7 @@ function Login({ handleLogin }) {
           console.log(res.data);
         } else {
           setErrorMsg(res.data.errors);
+          console.log(res.data);
         }
         console.log(errorMsg);
       })
