@@ -15,6 +15,7 @@ function Home({ handleLogout, user, isLoggedIn }) {
     return (
       <div>
         <br></br>
+        <Link to="/line"> Graph Crimes by Year</Link>
         <button onClick={() => handleLogout()}>Log Out</button>
       </div>
     );

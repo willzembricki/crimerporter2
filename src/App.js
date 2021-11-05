@@ -5,10 +5,19 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
+import LineGraph from "./components/LineGraph";
+// import LineGraph from "./components/LineGraph";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState({});
+  const [graphData, setGraphData] = useState([]);
+  const [lineLabels, setLineLabels] = useState([]);
+
+  function onGraphSubmit(resData) {
+    setGraphData([...graphData, resData[1]]);
+    setLineLabels([...lineLabels, resData[0]]);
+  }
 
   // if this causes a "flicker" you can swap it for useLayoutEffect instead of useEffect
   useEffect(() => {
@@ -65,6 +74,18 @@ function App() {
             exact
             path="/signup"
             component={() => <Signup handleLogin={handleLogin} />}
+          />
+          <Route
+            exact
+            path="/line"
+            component={() => (
+              <LineGraph
+                isLoggedIn={isLoggedIn}
+                charData={graphData}
+                labelArr={lineLabels}
+                handleGraphSubmit={onGraphSubmit}
+              />
+            )}
           />
         </Switch>
       </BrowserRouter>
