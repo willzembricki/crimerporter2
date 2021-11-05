@@ -88,10 +88,14 @@ const LineGraph = ({ charData, labelArr, handleGraphSubmit }) => {
   // console.log(dataStructure);
 
   const datasetsArr = charData.map((dataset, i) => {
-    let label = JSON.stringify(labelArr[i])
-      .replace(/['"]+/g, "")
-      .replace(/\b(\w)/g, (s) => s.toUpperCase())
-      .replace(/[{}]+/g, "");
+    console.log(labelArr);
+    let label = "";
+    if (labelArr[i]) {
+      label = JSON.stringify(labelArr[i])
+        .replace(/['"]+/g, "")
+        .replace(/\b(\w)/g, (s) => s.toUpperCase())
+        .replace(/[{}]+/g, "");
+    }
 
     return {
       data: dataset,

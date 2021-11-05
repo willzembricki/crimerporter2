@@ -15,6 +15,7 @@ function App() {
   const [lineLabels, setLineLabels] = useState([]);
 
   function onGraphSubmit(resData) {
+    console.log(resData);
     setGraphData([...graphData, resData[1]]);
     setLineLabels([...lineLabels, resData[0]]);
   }
