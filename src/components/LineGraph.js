@@ -1,7 +1,7 @@
 import { Line } from "react-chartjs-2";
 import { useState } from "react";
 import Select from "react-dropdown-select";
-
+import { Link } from "react-router-dom";
 // in order for return to work, need labelArr = the state and crime in array,
 // char data needs to be year: value, value being number of arrests
 const LineGraph = ({ charData, labelArr, handleGraphSubmit }) => {
@@ -11,40 +11,40 @@ const LineGraph = ({ charData, labelArr, handleGraphSubmit }) => {
 
   //  states should be names not abbv
   const states = [
-    "AK",
     "AL",
-    "AR",
+    "AK",
     "AZ",
+    "AR",
     "CA",
     "CO",
-    "CT",
     "DE",
+    "CT",
     "FL",
     "GA",
     "HI",
-    "IA",
     "ID",
     "IL",
     "IN",
+    "IA",
     "KS",
     "KY",
     "LA",
-    "MA",
-    "MD",
     "ME",
+    "MD",
+    "MA",
     "MI",
     "MN",
-    "MO",
     "MS",
+    "MO",
     "MT",
-    "NC",
-    "ND",
     "NE",
+    "NV",
     "NH",
     "NJ",
     "NM",
-    "NV",
     "NY",
+    "NC",
+    "ND",
     "OH",
     "OK",
     "OR",
@@ -54,12 +54,12 @@ const LineGraph = ({ charData, labelArr, handleGraphSubmit }) => {
     "SD",
     "TN",
     "TX",
+    "VT",
     "UT",
     "VA",
-    "VT",
     "WA",
-    "WI",
     "WV",
+    "WI",
     "WY",
   ];
   const crimesAvailable = [
@@ -163,6 +163,8 @@ const LineGraph = ({ charData, labelArr, handleGraphSubmit }) => {
       <div id="Graph">
         <Line data={chartDataConfig} option={options} />
       </div>
+      <br></br>
+      <Link to="/">Go to Home Page</Link>
     </>
   );
 };
