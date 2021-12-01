@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import LineGraph from "./components/LineGraph";
+import Map from "./components/Map";
 // import LineGraph from "./components/LineGraph";
 
 function App() {
@@ -87,6 +88,11 @@ function App() {
                 handleGraphSubmit={onGraphSubmit}
               />
             )}
+          />
+          <Route
+            exact
+            path="/NaitonalMap"
+            component={() => <Map isLoggedIn={isLoggedIn} />}
           />
         </Switch>
       </BrowserRouter>
